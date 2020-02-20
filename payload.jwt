@@ -5,6 +5,6 @@
   "https://hasura.io/jwt/claims" : {
     "x-hasura-allowed-roles": ["user"],
     "x-hasura-default-role": "user",
-    "x-hasura-user-id": "u1"
+    "x-hasura-user-id": "1"
   }
 }
