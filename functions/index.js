@@ -6,6 +6,8 @@ const app = express();
 
 app.use(bodyParser.json());
 
+const HASURA_GRAPHQL_ENDPOINT = 'http://localhost:8080/v1/graphql';
+
 const HASURA_OPERATION1 = `
 mutation($user_id: String!, $restaurant_id: String!, $items:[items_insert_input!]!) {
   order : insert_orders_one(object: {user_id: $user_id, restaurant_id: $restaurant_id, items: {data: $items}}){
@@ -37,7 +39,7 @@ mutation($order_id: String!) {
 // execute the parent mutation in Hasura
 const execute = async (query, variables, reqHeaders) => {
     const fetchResponse = await fetch(
-        "http://localhost:8080/v1/graphql",
+	HASURA_GRAPHQL_ENDPOINT,
         {
             method: 'POST',
             headers: reqHeaders || {},
@@ -59,9 +61,11 @@ app.post('/place-order', async function (req, res) {
         });
     }
     const {restaurant_id, items} = req.body.input;
+
+    // do business logic
     const { data, errors } = await execute(HASURA_OPERATION1,
         { user_id, restaurant_id, items },
-        {"x-hasura-admin-secret": "abcdef123"});
+        {"x-hasura-admin-secret": "secret"});
 
     console.log(data);
     console.log(errors);
@@ -79,7 +83,7 @@ app.post('/payment-callback', async function (req, res) {
     }
     const { data, errors } = await execute(HASURA_OPERATION2,
         { order_id, type, amount },
-        {"x-hasura-admin-secret": "abcdef123"});
+        {"x-hasura-admin-secret": "secret"});
 
     console.log(data);
     console.log(errors);
@@ -99,7 +103,7 @@ app.post('/initiate-assignment', async function (req, res) {
     await setTimeout(async () => {}, 5000);
     const { data, errors } = await execute(HASURA_OPERATION3,
                                            { order_id },
-                                           {"x-hasura-admin-secret": "abcdef123"});
+                                           {"x-hasura-admin-secret": "secret"});
 
     console.log(data);
     console.log(errors);
