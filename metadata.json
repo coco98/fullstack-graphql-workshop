@@ -1,0 +1,285 @@
+{
+  "version": 2,
+  "tables": [
+    {
+      "table": {
+        "schema": "public",
+        "name": "assignment"
+      },
+      "object_relationships": [
+        {
+          "name": "order",
+          "using": {
+            "foreign_key_constraint_on": "order_id"
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "public",
+        "name": "items"
+      },
+      "object_relationships": [
+        {
+          "name": "order",
+          "using": {
+            "foreign_key_constraint_on": "order_id"
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "public",
+        "name": "menu_items"
+      },
+      "object_relationships": [
+        {
+          "name": "restaurant",
+          "using": {
+            "foreign_key_constraint_on": "restaurant_id"
+          }
+        }
+      ],
+      "select_permissions": [
+        {
+          "role": "anonymous",
+          "permission": {
+            "columns": [
+              "item_id",
+              "name"
+            ],
+            "filter": {}
+          }
+        },
+        {
+          "role": "user",
+          "permission": {
+            "columns": [
+              "item_id",
+              "name"
+            ],
+            "filter": {}
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "public",
+        "name": "number_order_driver_assigned"
+      }
+    },
+    {
+      "table": {
+        "schema": "public",
+        "name": "number_orders"
+      }
+    },
+    {
+      "table": {
+        "schema": "public",
+        "name": "orders"
+      },
+      "object_relationships": [
+        {
+          "name": "restaurant",
+          "using": {
+            "foreign_key_constraint_on": "restaurant_id"
+          }
+        },
+        {
+          "name": "user",
+          "using": {
+            "foreign_key_constraint_on": "user_id"
+          }
+        }
+      ],
+      "array_relationships": [
+        {
+          "name": "assignments",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "order_id",
+              "table": {
+                "schema": "public",
+                "name": "assignment"
+              }
+            }
+          }
+        },
+        {
+          "name": "items",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "order_id",
+              "table": {
+                "schema": "public",
+                "name": "items"
+              }
+            }
+          }
+        },
+        {
+          "name": "payments",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "order_id",
+              "table": {
+                "schema": "public",
+                "name": "payments"
+              }
+            }
+          }
+        }
+      ],
+      "select_permissions": [
+        {
+          "role": "user",
+          "permission": {
+            "columns": [
+              "order_id",
+              "user_id",
+              "restaurant_id",
+              "payment_rcvd",
+              "driver_assigned",
+              "food_picked",
+              "delivered",
+              "cancelled",
+              "created_at"
+            ],
+            "filter": {
+              "user_id": {
+                "_eq": "x-hasura-user-id"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "public",
+        "name": "payments"
+      },
+      "object_relationships": [
+        {
+          "name": "order",
+          "using": {
+            "foreign_key_constraint_on": "order_id"
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "public",
+        "name": "restaurants"
+      },
+      "array_relationships": [
+        {
+          "name": "menu_items",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "restaurant_id",
+              "table": {
+                "schema": "public",
+                "name": "menu_items"
+              }
+            }
+          }
+        },
+        {
+          "name": "orders",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "restaurant_id",
+              "table": {
+                "schema": "public",
+                "name": "orders"
+              }
+            }
+          }
+        }
+      ],
+      "select_permissions": [
+        {
+          "role": "anonymous",
+          "permission": {
+            "columns": [
+              "address",
+              "name"
+            ],
+            "filter": {}
+          }
+        },
+        {
+          "role": "user",
+          "permission": {
+            "columns": [
+              "address",
+              "name"
+            ],
+            "filter": {}
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "public",
+        "name": "users"
+      },
+      "array_relationships": [
+        {
+          "name": "orders",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "user_id",
+              "table": {
+                "schema": "public",
+                "name": "orders"
+              }
+            }
+          }
+        }
+      ],
+      "select_permissions": [
+        {
+          "role": "user",
+          "permission": {
+            "columns": [
+              "address",
+              "id",
+              "name"
+            ],
+            "filter": {
+              "id": {
+                "_eq": "x-hasura-user-id"
+              }
+            }
+          }
+        }
+      ],
+      "update_permissions": [
+        {
+          "role": "user",
+          "permission": {
+            "columns": [
+              "address",
+              "name"
+            ],
+            "filter": {
+              "id": {
+                "_eq": "x-hasura-user-id"
+              }
+            },
+            "check": null
+          }
+        }
+      ]
+    }
+  ],
+  "actions": []
+}
