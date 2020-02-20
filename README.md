@@ -17,4 +17,4 @@ Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?
 
 HASURA_GRAPHQL_ADMIN_SECRET: secret
 
-HASURA_GRAPHQL_JWT_SECRET: '{"type": "HS256", "key": "myjwtsecretkey111111111111111111111111111111111"}'
+HASURA_GRAPHQL_JWT_SECRET: {"type": "HS256", "key": "myjwtsecretkey111111111111111111111111111111111"}
