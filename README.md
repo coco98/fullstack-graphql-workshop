@@ -50,3 +50,14 @@ type OrderResult {
 }
 
 ```
+
+
+### Action
+
+```
+mutation MyMutation {
+  placeOrder(restaurant_id: "r1", items: [{item_id: 1, quantity:2}, {item_id:2, quantity:1}]) {
+    order_id
+  }
+}
+```
