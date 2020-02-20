@@ -1,5 +1,7 @@
 # 3factor workshop deploy to Heroku
 
+### bit.ly/3factor
+
 ## Options:
 
 1. Local development: Requires docker, node/npm
