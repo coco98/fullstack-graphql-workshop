@@ -1,17 +1,7 @@
-# 3factor workshop deploy to Heroku
+# Fullstack GraphQL workshop with Hasura
 
-### bit.ly/3factor
-
-## Options:
-
-1. Local development: Requires docker, node/npm
-2. Browser based: Requires no installation, except a Heroku account
-
-## Browser based (Heroku / Glitch)
 [![Deploy to
 Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/coco98/3factor-workshop-heroku)
-
-**Glitch:** https://glitch.com/~transparent-book-j4rrqo19xb
 
 ## Environment variables:
 
@@ -26,39 +16,3 @@ HASURA_GRAPHQL_JWT_SECRET: {"type": "HS256", "key": "myjwtsecretkey1111111111111
 ## Actions
 
 ### Definition
-
-```
-type Mutation {
-  placeOrder (
-    restaurant_id: String!
-    items: [OrderItem]
-  ): OrderResult
-}
-
-```
-
-### Custom types
-
-```
-input OrderItem {
-  item_id : Int
-  quantity : Int
-}
-
-type OrderResult {
-  order_id : String
-}
-
-```
-
-
-### Action
-
-```
-mutation MyMutation {
-  placeOrder(restaurant_id: "r1", items: [{item_id: 1, quantity:2}, {item_id:2, quantity:1}]) {
-    order_id
-  }
-}
-```
-# fullstack-graphql-workshop
