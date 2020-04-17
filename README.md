@@ -22,6 +22,7 @@ type Mutation {
   add_todo (
     title: String!
     is_public: Boolean!
+    user_id: Int!
   ): AddTodoOutput
 }
 
@@ -29,4 +30,6 @@ type AddTodoOutput {
   id : Int!
 }
 ```
+
+Hander: https://pointy-large-acapella.glitch.me/add_todo
 
