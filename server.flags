@@ -1,2 +1,0 @@
---admin-secret abcdef123 \
---jwt-secret '{"type": "HS256", "key": "myjwtsecretkey111111111111111111111111111111111"}' \

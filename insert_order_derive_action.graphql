@@ -1,5 +1,0 @@
-mutation($restaurant_id: String!, $items:[items_insert_input!]!) {
-  insert_orders_one(object: { restaurant_id: $restaurant_id, items: {data: $items}}){
-    order_id
-  }
-}
