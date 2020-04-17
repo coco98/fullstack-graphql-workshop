@@ -61,3 +61,4 @@ mutation MyMutation {
   }
 }
 ```
+# fullstack-graphql-workshop
