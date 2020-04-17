@@ -16,3 +16,17 @@ HASURA_GRAPHQL_JWT_SECRET: {"type": "HS256", "key": "myjwtsecretkey1111111111111
 ## Actions
 
 ### Definition
+
+```graphql
+type Mutation {
+  add_todo (
+    title: String!
+    is_public: Boolean!
+  ): AddTodoOutput
+}
+
+type AddTodoOutput {
+  id : Int!
+}
+```
+
